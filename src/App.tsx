@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import NewPostForm from "./components/NewPostForm";
+import PostsList from "./components/PostsList";
 
 function App() {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const handleModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  const submitPostHandler = () => {};
+
+  const newPostBtn = (
+    <button
+      onClick={handleModal}
+      type="button"
+      className="bg-neutral-700 hover:bg-neutral-800 text-white font-semibold py-2 my-5 px-4 rounded"
+    >
+      Add new post
+    </button>
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="text-center">
+      <div className="fixed top-0 left-0 right-0 flex justify-between px-14 bg-neutral-800">
+        <p className="text-4xl font-bold py-5">Posts App</p>
+        {newPostBtn}
+      </div>
+      <div className="mt-24 sticky">
+        {modalOpen && <NewPostForm onClose={handleModal} />}
+      </div>
+      <PostsList />
     </div>
   );
 }
