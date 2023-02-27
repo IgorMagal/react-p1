@@ -17,7 +17,7 @@ const NewPostForm: React.FC<{
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 ">
       <div className="fixed left-0 top-0 bottom-0 right-0 flex justify-center items-center ">
         <form
-          className="bg-neutral-100 rounded-lg p-8 w-full max-w-lg mx-5  animate-wiggle"
+          className="bg-neutral-100 rounded-lg p-8 w-full max-w-lg mx-5  animate-[wiggle_1s_ease-in-out_3]"
           onSubmit={handleSubmit}
         >
           <h2 className="text-2xl  font-bold mb-4 text-black">Add a Comment</h2>
