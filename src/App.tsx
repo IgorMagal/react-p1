@@ -24,8 +24,10 @@ function App() {
 
   return (
     <div className="text-center">
-      <div className="fixed top-0 left-0 right-0 flex justify-between px-14 bg-neutral-800">
-        <p className="text-4xl font-bold py-5">Posts App</p>
+      <div className="fixed top-0 left-0 right-0 flex justify-between px-14 items-center bg-neutral-800">
+        <p className=" sm:text-lg align-middle lg:text-4xl font-bold py-5">
+          Posts App
+        </p>
         {newPostBtn}
       </div>
       <div className="mt-24 sticky">

@@ -20,7 +20,7 @@ const NewPostForm: React.FC<{
           className="bg-neutral-100 rounded-lg p-8 w-full max-w-lg mx-5  animate-wiggle"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-bold mb-4 text-black">Add a Comment</h2>
+          <h2 className="text-2xl  font-bold mb-4 text-black">Add a Comment</h2>
           <div className="mb-4">
             <label
               htmlFor="author"
