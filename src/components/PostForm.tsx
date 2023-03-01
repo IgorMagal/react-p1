@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { MdCancel, MdSave } from "react-icons/md";
 
-const NewPostForm: React.FC<{
+const PostForm: React.FC<{
   onClose: () => void;
 }> = (props) => {
   const [author, setAuthor] = useState("");
@@ -17,7 +18,7 @@ const NewPostForm: React.FC<{
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 ">
       <div className="fixed left-0 top-0 bottom-0 right-0 flex justify-center items-center ">
         <form
-          className="bg-neutral-100 rounded-lg p-8 w-full max-w-lg mx-5  animate-[wiggle_1s_ease-in-out_3]"
+          className="bg-neutral-100 rounded-lg p-8 w-full max-w-lg mx-5  animate-[wiggle_0.2s_ease-in-out_1.5]"
           onSubmit={handleSubmit}
         >
           <h2 className="text-2xl  font-bold mb-4 text-black">Add a Comment</h2>
@@ -56,13 +57,19 @@ const NewPostForm: React.FC<{
               type="button"
               className="bg-white hover:bg-neutral-700 hover:text-white text-neutral-700 border-2 font-bold py-2 px-4 rounded-lg"
             >
-              Close
+              <div className="flex items-center gap-1">
+                <MdCancel size={30} />
+                Cancel
+              </div>
             </button>
             <button
               type="submit"
               className="bg-neutral-700 hover:bg-neutral-800 text-white font-bold py-2 px-4 rounded-lg"
             >
-              Send
+              <div className="flex items-center gap-1">
+                <MdSave size={30} />
+                Save
+              </div>
             </button>
           </div>
         </form>
@@ -71,4 +78,4 @@ const NewPostForm: React.FC<{
   );
 };
 
-export default NewPostForm;
+export default PostForm;

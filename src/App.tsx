@@ -1,6 +1,5 @@
 import { useState } from "react";
-import "./App.css";
-import NewPostForm from "./components/NewPostForm";
+import PostForm from "./components/PostForm";
 import PostsList from "./components/PostsList";
 import { MdPostAdd, MdMessage } from "react-icons/md";
 
@@ -10,14 +9,14 @@ function App() {
   const handleModal = () => {
     setModalOpen(!modalOpen);
   };
-
+  // this is a comment
   const submitPostHandler = () => {};
 
   const newPostBtn = (
     <button
       onClick={handleModal}
       type="button"
-      className="bg-neutral-700 hover:bg-neutral-800 text-white font-semibold py-2 my-5 px-4 rounded flex items-center"
+      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 my-5 px-4 rounded flex items-center"
     >
       <MdPostAdd size={30} />
       New post
@@ -36,7 +35,7 @@ function App() {
         {newPostBtn}
       </header>
       <main className="mt-24 sticky">
-        {modalOpen && <NewPostForm onClose={handleModal} />}
+        {modalOpen && <PostForm onClose={handleModal} />}
         <PostsList />
       </main>
     </div>
