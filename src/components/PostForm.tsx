@@ -28,7 +28,7 @@ const PostForm: React.FC<PostFormProps> = (props) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 ">
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-15">
       <div className="fixed left-0 top-0 bottom-0 right-0 flex justify-center items-center ">
         <form
           className="bg-neutral-100 rounded-lg p-8 w-full max-w-lg mx-5  animate-[wiggle_0.05s_ease-in-out_2]"
