@@ -34,8 +34,8 @@ function App() {
       <header className="fixed top-0 left-0 right-0 flex justify-between px-14 items-center bg-neutral-800 border-b-neutral-300 border-b-2 z-10">
         <div className="flex align-middle justify-center items-center">
           <MdMessage size={40} />
-          <p className=" sm:text-lg align-middle lg:text-4xl font-bold py-5">
-            Posts App
+          <p className=" sm:text-xl align-bottom lg:text-3xl font-bold">
+            osts App
           </p>
         </div>
         {newPostBtn}
