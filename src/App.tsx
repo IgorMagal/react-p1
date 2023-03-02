@@ -1,16 +1,22 @@
 import { useState } from "react";
 import PostForm from "./components/PostForm";
 import PostsList from "./components/PostsList";
+import data from "./Posts.json";
 import { MdPostAdd, MdMessage } from "react-icons/md";
+import Ipost from "./interfaces/PostInterface";
 
 function App() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [postsData, setPostsData] = useState<Ipost[]>(data.posts);
 
   const handleModal = () => {
     setModalOpen(!modalOpen);
   };
+
   // this is a comment
-  const submitPostHandler = () => {};
+  const submitPostHandler = (newPost: Ipost) => {
+    setPostsData((posts) => [...posts, newPost]);
+  };
 
   const newPostBtn = (
     <button
@@ -35,8 +41,16 @@ function App() {
         {newPostBtn}
       </header>
       <main className="mt-24 sticky">
-        {modalOpen && <PostForm onClose={handleModal} />}
-        <PostsList />
+        {modalOpen && (
+          <PostForm
+            authorName="IgorMagal"
+            authorPhoto="link"
+            headerText="What's on your mind?"
+            onClose={handleModal}
+            onSubmit={submitPostHandler}
+          />
+        )}
+        <PostsList posts={postsData} />
       </main>
     </div>
   );

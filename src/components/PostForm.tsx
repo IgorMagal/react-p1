@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import { MdCancel, MdSave } from "react-icons/md";
+import Ipost from "../interfaces/PostInterface";
 
-const PostForm: React.FC<{
+type PostFormProps = {
+  onSubmit: (post: Ipost) => void;
   onClose: () => void;
-}> = (props) => {
-  const [author, setAuthor] = useState("");
+  headerText?: string;
+  authorName: string;
+  authorPhoto?: string;
+};
+
+const PostForm: React.FC<PostFormProps> = (props) => {
+  const { authorName, authorPhoto, headerText, onClose, onSubmit } = props;
+  // const [author, setAuthor] = useState(authorName);
   const [comment, setComment] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //props.onSubmit(author, comment);
-    setAuthor("");
+    onSubmit({
+      id: new Date().toISOString() + authorName,
+      author: authorName,
+      comment: comment,
+    });
+    onClose();
+    // setAuthor("");
     setComment("");
   };
 
@@ -21,31 +34,11 @@ const PostForm: React.FC<{
           className="bg-neutral-100 rounded-lg p-8 w-full max-w-lg mx-5  animate-[wiggle_0.05s_ease-in-out_2]"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl  font-bold mb-4 text-black">
-            What's on your mind?
-          </h2>
-          <div className="mb-4">
-            <label
-              htmlFor="author"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Author
-            </label>
-            <input
-              type="text"
-              id="author"
-              className="border rounded px-3 py-2 w-full text-black"
-              value={author}
-              onChange={(event) => setAuthor(event.target.value)}
-            />
+          <div className="text-xl mb-4 font-semibold  text-neutral-700">
+            <p>{`Hey ${authorName},`}</p>
+            <p className=" ">{headerText}</p>
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="comment"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Comment
-            </label>
             <textarea
               id="comment"
               className="border rounded px-3 py-2 w-full text-black"
@@ -55,7 +48,7 @@ const PostForm: React.FC<{
           </div>
           <div className="flex justify-center gap-10 w-full">
             <button
-              onClick={props.onClose}
+              onClick={onClose}
               type="button"
               className="bg-white hover:bg-neutral-700 hover:text-white text-neutral-700 border-2 font-bold py-2 px-4 rounded-lg"
             >
