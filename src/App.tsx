@@ -15,7 +15,7 @@ function App() {
 
   // this is a comment
   const submitPostHandler = (newPost: Ipost) => {
-    setPostsData((posts) => [...posts, newPost]);
+    setPostsData((posts) => [newPost, ...posts]);
   };
 
   const newPostBtn = (
