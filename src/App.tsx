@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostForm from "./components/PostForm";
 import PostsList from "./components/PostsList";
 import data from "./Posts.json";
@@ -7,13 +7,16 @@ import Ipost from "./interfaces/PostInterface";
 
 function App() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [postsData, setPostsData] = useState<Ipost[]>(data.posts);
+  const [postsData, setPostsData] = useState<Ipost[]>([]);
 
   const handleModal = () => {
     setModalOpen(!modalOpen);
   };
 
-  // this is a comment
+  useEffect(() => {
+    setPostsData(data.posts);
+  }, []);
+
   const submitPostHandler = (newPost: Ipost) => {
     setPostsData((posts) => [newPost, ...posts]);
   };
