@@ -15,10 +15,10 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
     <button
       onClick={props.handleModal}
       type="button"
-      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 rounded flex items-center"
+      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 sm:py-2 sm:px-2 rounded flex items-center"
     >
       <MdPostAdd size={30} />
-      New post
+      <p className="xs:hidden sm:visible">New post</p>
     </button>
   );
 
@@ -26,10 +26,10 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
     <button
       onClick={() => googleSignIn()}
       type="button"
-      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 rounded flex items-center"
+      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 sm:px-2 rounded flex items-center"
     >
       <MdLogin size={30} />
-      Login
+      <p className="xs:hidden sm:visible">Login</p>
     </button>
   );
 
@@ -37,24 +37,21 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
     <button
       onClick={() => logout()}
       type="button"
-      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 rounded flex items-center"
+      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 sm:px-2 rounded flex items-center"
     >
       <MdLogout size={30} />
-      Logout
+      <p className="xs:hidden sm:visible">Logout</p>
     </button>
   );
   return (
-    <header className="fixed py-2 pb-2 top-0 left-0 right-0 flex justify-between px-14 items-center bg-neutral-800 border-b-neutral-300 border-b-2 z-10">
+    <header className="fixed py-2 pb-2 top-0 left-0 right-0 flex justify-between px-10 xs:px-2 items-center bg-neutral-800 border-b-neutral-300 border-b-2 z-10">
       <div className="flex align-middle justify-center items-center">
         <MdMessage size={40} />
-        <p className="  align-bottom sm:text-xl md:text-2xl lg:text-3xl font-bold">
-          osts App
-        </p>
+        <p className="sm:text-xl md:text-2xl lg:text-3xl font-bold">osts App</p>
       </div>
-      <div className="flex gap-2 text-center align-middle justify-center items-center">
+      <div className="flex gap-2 items-center">
         {user?.photoURL ? (
           <img
-            sizes="40"
             className="w-10 h-10 rounded-full border-2 border-neutral-50"
             src={user.photoURL}
             alt={user.displayName!}
