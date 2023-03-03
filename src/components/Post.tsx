@@ -11,7 +11,7 @@ const Post: React.FC<PostType> = (props) => {
   const { author, comment, date, image } = props;
 
   return (
-    <div className="m-2 p-1 mx-5 border-2 rounded-lg border-neutral-900 bg-neutral-100 shadow-md hover:shadow-2xl shadow-neutral-900 hover:border-white text-neutral-800">
+    <div className="m-2 p-1 mx-5 border-2 rounded-lg border-neutral-900 bg-neutral-100 shadow-xl hover:scale-105 shadow-neutral-900 hover:border-white text-neutral-800">
       <div className="flex justify-between">
         <div className="flex py-2 px-4 gap-2 items-start align-middle">
           <div className="border-2 border-neutral-800 rounded-full">
