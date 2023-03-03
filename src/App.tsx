@@ -1,43 +1,28 @@
-import { useEffect, useState } from "react";
-import PostForm from "./components/PostForm";
-import PostsList from "./components/PostsList";
-import data from "./Posts.json";
-import Ipost from "./interfaces/PostInterface";
-import PostHeader from "./components/PostHeader";
-
+import RootPage from "./pages/RootPage";
+import ErrorPage from "./pages/ErrorPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PostsPage from "./pages/PostsPage";
+import LoginPage from "./pages/LoginPage";
+import { AuthCtxProvider } from "./services/AuthCtxProvider";
 function App() {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [postsData, setPostsData] = useState<Ipost[]>([]);
-
-  const handleModal = () => {
-    setModalOpen(!modalOpen);
-  };
-
-  useEffect(() => {
-    setPostsData(data.posts);
-  }, []);
-
-  const submitPostHandler = (newPost: Ipost) => {
-    setPostsData((posts) => [newPost, ...posts]);
-  };
-
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootPage />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          index: true,
+          element: <PostsPage />,
+        },
+        { path: "signin", element: <LoginPage /> },
+      ],
+    },
+  ]);
   return (
-    <div className="text-center">
-      <PostHeader handleModal={handleModal} />
-      <main className="mt-24 sticky">
-        {modalOpen && (
-          <PostForm
-            authorName="IgorMagal"
-            authorPhoto="link"
-            headerText="What's on your mind?"
-            onClose={handleModal}
-            onSubmit={submitPostHandler}
-          />
-        )}
-        <PostsList posts={postsData} />
-      </main>
-    </div>
+    <AuthCtxProvider>
+      <RouterProvider router={router} />
+    </AuthCtxProvider>
   );
 }
-
 export default App;
