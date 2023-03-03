@@ -54,7 +54,7 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
       <div className="flex gap-2 items-center">
         {user?.photoURL ? (
           <img
-            className="w-10 h-10 rounded-full border-2 border-neutral-50 skew-y-3"
+            className="w-10 h-10 rounded-full border-2 border-neutral-50"
             src={user.photoURL}
             alt={user.displayName!}
           />
