@@ -29,7 +29,10 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
 
   const logoutBtn = (
     <button
-      onClick={() => logout()}
+      onClick={() => {
+        logout();
+        handleMenuToggle();
+      }}
       type="button"
       className="bg-neutral-700 shadow-2xl w-full hover:bg-neutral-500 justify-around text-white font-semibold py-2 px-4 sm:px-2 mr-4 rounded flex items-center"
     >
@@ -76,12 +79,10 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
         </>
         {showMenu && (
           <div className="absolute right-0 top-10 z-50 bg-neutral-100 shadow-lg px-2 py-2 rounded-md min-w-[150px]">
-            {user && (
-              <div className="flex flex-col items-center gap-2 w-full m-2 justify-around">
-                {profileLink}
-                {logoutBtn}
-              </div>
-            )}
+            <div className="flex flex-col items-center gap-2 w-full m-2 justify-around">
+              {profileLink}
+              {logoutBtn}
+            </div>
           </div>
         )}
       </div>
