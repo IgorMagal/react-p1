@@ -9,7 +9,7 @@ const PostsList: React.FC<{ posts: IPost[] }> = (props) => {
         {posts.reverse().map((post) => (
           <li
             key={post.id}
-            className="w-full xs:w-1/1 sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/4 grow"
+            className="w-full max-w-[50%] xs:max-w-[100%] xs:w-1/1 sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/4 grow"
           >
             <Post
               author={post.author}
