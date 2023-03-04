@@ -56,7 +56,7 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
       <div className="flex align-middle justify-center items-center min-h-[50px]">
         <MdMessage size={40} />
         <p className="xs:text-lg sm:text-lg md:text-2xl text-3xl font-bold">
-          Posts App
+          osts App
         </p>
       </div>
       <div className="flex gap-4 items-center relative">
