@@ -53,7 +53,7 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
     <Link
       onClick={() => handleMenuToggle()}
       to={"profile"} //`/profile/${user?.uid}`
-      className="bg-neutral-700 shadow-2xl w-full justify-around hover:bg-neutral-500 text-white font-semibold py-2 px-4 sm:px-2 mr-4 rounded flex items-center"
+      className="bg-neutral-700 shadow-2xl w-full justify-around hover:bg-neutral-500 text-white font-semibold py-2 px-4 sm:px-2 mr-4  rounded flex items-center"
     >
       <MdOutlinePerson size={30} />
       Profile
@@ -73,7 +73,7 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
   );
 
   return (
-    <header className="fixed py-2 pb-2 top-0 left-0 right-0 flex justify-between px-10 xs:px-4 items-center bg-neutral-800 border-b-neutral-300 border-b-2 z-10">
+    <header className="fixed bg-opacity-50 py-2 pb-2 top-0 left-0 right-0 flex justify-between px-10 xs:px-4 items-center bg-neutral-800 border-b-neutral-300 border-b-2 z-10">
       {appLogo}
       <div className="flex gap-4 items-center relative">
         {user?.photoURL && newPostBtn}
@@ -81,7 +81,7 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
           {user?.photoURL ? (
             <img
               onClick={handleMenuToggle}
-              className="w-12 h-12 rounded-full border-1 border-black  cursor-pointer"
+              className="w-12 h-12 rounded-full border-2 border-white  cursor-pointer"
               src={user.photoURL}
               alt={user.displayName!}
             />

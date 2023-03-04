@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdCancel, MdSave } from "react-icons/md";
 import Ipost from "../interfaces/PostInterface";
-import { writePostData } from "../services/DbServices";
+import { addPost } from "../services/DbServices";
 
 type PostFormProps = {
   onSubmit: (post: Ipost) => void;
@@ -22,7 +22,7 @@ const PostForm: React.FC<PostFormProps> = (props) => {
 
     setIsPosting(true);
     try {
-      await writePostData(
+      await addPost(
         authorName,
         comment,
         authorPhoto!,

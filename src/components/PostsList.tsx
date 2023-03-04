@@ -16,6 +16,7 @@ const PostsList: React.FC<{ posts: IPost[] }> = (props) => {
               comment={post.comment}
               date={post.date}
               image={post.authorImage}
+              postId={post.id}
             />
           </li>
         ))}

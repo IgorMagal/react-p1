@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo, useMemo } from "react";
 import PostsList from "../components/PostsList";
-import PostForm from "../components/PostForm";
 import Ipost from "../interfaces/PostInterface";
 import { getAllPosts } from "../services/DbServices";
 
@@ -10,15 +9,13 @@ const PostsPage = () => {
 
   const retrievePosts = async () => {
     const posts = await getAllPosts();
-
     setPostsData(posts);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     console.log("Running useEffect");
-
     retrievePosts();
-    setIsLoading(false);
   }, []);
 
   return (
@@ -34,4 +31,4 @@ const PostsPage = () => {
   );
 };
 
-export default PostsPage;
+export default memo(PostsPage);

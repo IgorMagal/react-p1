@@ -1,8 +1,8 @@
 import Ipost from "../interfaces/PostInterface";
 import { database } from "./Firebase";
-import { ref, push, query, get} from "firebase/database";
+import { ref, push, query, get, set, remove } from "firebase/database";
 
-const writePostData = async (
+const addPost = async (
   author: string,
   comment: string,
   authorImage: string,
@@ -43,4 +43,28 @@ const getAllPosts = async () => {
   return postsArray;
 };
 
-export { writePostData, getAllPosts };
+const updatePost = async (postId: string, newData: Ipost) => {
+  try {
+    const postRef = ref(database, `/posts/${postId}`);
+    await set(postRef, newData);
+    console.log(`Post ${postId} has been updated successfully`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deletePost = async (postId: string) => {
+  try {
+    // Create a reference to the post with the specified ID
+    const postRef = ref(database, `/posts/${postId}`);
+
+    // Delete the post from the database
+    await remove(postRef);
+
+    console.log(`Post ${postId} deleted successfully`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { addPost, getAllPosts, updatePost, deletePost };
