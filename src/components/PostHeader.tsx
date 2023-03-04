@@ -4,7 +4,6 @@ import {
   MdLogout,
   MdOutlinePerson,
 } from "react-icons/md";
-import { FaGoogle } from "react-icons/fa";
 import { UserAuth } from "../services/AuthCtxProvider";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -25,16 +24,6 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
     >
       <MdPostAdd size={30} />
       <p className="xs:hidden">New post</p>
-    </button>
-  );
-
-  const loginBtn = (
-    <button
-      type="button"
-      className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 min-h-[50px] rounded flex items-center"
-    >
-      <FaGoogle size={25} />
-      <p className="px-1">Signin</p>
     </button>
   );
 
@@ -68,11 +57,11 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
         </p>
       </div>
       <div className="flex gap-4 items-center relative">
-        {newPostBtn}
+        {user?.photoURL && newPostBtn}
         <>
           {user?.photoURL ? (
             <img
-              onMouseEnter={handleMenuToggle}
+              onClick={handleMenuToggle}
               className="w-12 h-12 rounded-full border-2 border-neutral-50 shadow-lg shadow-black cursor-pointer"
               src={user.photoURL}
               alt={user.displayName!}
@@ -86,17 +75,12 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
           )}
         </>
         {showMenu && (
-          <div
-            onMouseLeave={handleMenuToggle}
-            className="absolute right-0 top-10 z-50 bg-neutral-100 shadow-lg px-2 py-2 rounded-md min-w-[150px]"
-          >
-            {user ? (
+          <div className="absolute right-0 top-10 z-50 bg-neutral-100 shadow-lg px-2 py-2 rounded-md min-w-[150px]">
+            {user && (
               <div className="flex flex-col items-center gap-2 w-full m-2 justify-around">
                 {profileLink}
                 {logoutBtn}
               </div>
-            ) : (
-              loginBtn
             )}
           </div>
         )}
