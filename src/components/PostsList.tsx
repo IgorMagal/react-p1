@@ -14,7 +14,8 @@ const PostsList: React.FC<{ posts: IPost[] }> = (props) => {
             <Post
               author={post.author}
               comment={post.comment}
-              date={new Date().toISOString()}
+              date={post.date}
+              image={post.authorImage}
             />
           </li>
         ))}

@@ -1,4 +1,5 @@
 import { MdOutlinePerson } from "react-icons/md";
+import { auth } from "../services/Firebase";
 
 type PostType = {
   author: string;
@@ -15,7 +16,15 @@ const Post: React.FC<PostType> = (props) => {
       <div className="flex justify-between">
         <div className="flex py-2 px-4 gap-2 items-start align-middle">
           <div className="border-2 border-neutral-800 rounded-full">
-            {image ? image : <MdOutlinePerson size={35} />}
+            {image ? (
+              <img
+                className="w-12 h-12 rounded-full border-1 border-black  cursor-pointer"
+                src={image}
+                alt={author}
+              />
+            ) : (
+              <MdOutlinePerson size={35} />
+            )}
           </div>
           <p className="font-semibold py-2 align-top italic ">{author}</p>
         </div>

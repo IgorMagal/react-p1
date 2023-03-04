@@ -1,39 +1,36 @@
 import { useEffect, useState } from "react";
 import PostsList from "../components/PostsList";
 import PostForm from "../components/PostForm";
-import data from "../Posts.json";
 import Ipost from "../interfaces/PostInterface";
+import { getAllPosts } from "../services/DbServices";
 
 const PostsPage = () => {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [postsData, setPostsData] = useState<Ipost[]>([]);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const handleModal = () => {
-    setModalOpen(!modalOpen);
+  const retrievePosts = async () => {
+    const posts = await getAllPosts();
+
+    setPostsData(posts);
   };
 
   useEffect(() => {
-    setPostsData(data.posts);
+    console.log("Running useEffect");
+
+    retrievePosts();
+    setIsLoading(false);
   }, []);
 
-  const submitPostHandler = (newPost: Ipost) => {
-    setPostsData((posts) => [newPost, ...posts]);
-  };
-
   return (
-    <main className="mt-24 sticky text">
-      {modalOpen && (
-        <PostForm
-          authorName="IgorMagal"
-          authorPhoto="link"
-          headerText="What's on your mind?"
-          onClose={handleModal}
-          onSubmit={submitPostHandler}
-        />
+    <div className="mt-24">
+      {isLoading ? (
+        <p>Loading posts...</p>
+      ) : (
+        <main>
+          <PostsList posts={postsData} />
+        </main>
       )}
-      <PostsList posts={postsData} />
-    </main>
+    </div>
   );
 };
 

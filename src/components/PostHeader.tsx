@@ -81,7 +81,7 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
           {user?.photoURL ? (
             <img
               onClick={handleMenuToggle}
-              className="w-12 h-12 rounded-full border-2 border-neutral-50 shadow-lg shadow-black cursor-pointer"
+              className="w-12 h-12 rounded-full border-1 border-black  cursor-pointer"
               src={user.photoURL}
               alt={user.displayName!}
             />

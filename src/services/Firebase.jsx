@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAYDvJn7QYIQFRY0Oq0uiXsY8me8evWhSs",
@@ -9,11 +10,14 @@ export const firebaseConfig = {
   messagingSenderId: "697571420491",
   appId: "1:697571420491:web:05acfbe37e251ae3f0a0ce",
   measurementId: "G-73L88F22T7",
+  databaseURL: "https://postsapp-6f655-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase and services
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvideer = new GoogleAuthProvider();
+// Initialize Realtime Database and get a reference to the service
+const database = getDatabase(app);
 
-export { auth, googleProvideer };
+export { auth, googleProvideer, database };
