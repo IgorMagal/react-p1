@@ -1,7 +1,6 @@
 import React, { useContext, createContext, useEffect, useState } from "react";
 import {
   signInWithPopup,
-  signInWithRedirect,
   signOut,
   onAuthStateChanged,
   User,

@@ -5,20 +5,28 @@ import {
   MdOutlinePerson,
 } from "react-icons/md";
 import { UserAuth } from "../services/AuthCtxProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
   const { user, googleSignIn, logout } = UserAuth();
   const [showMenu, setShowMenu] = useState(false);
-
+  const nav = useNavigate();
   const handleMenuToggle = () => {
     setShowMenu(!showMenu);
   };
 
+  const handleNewPost = () => {
+    nav("new");
+  };
+
+  const handleLogoBtn = () => {
+    nav("/");
+  };
+
   const newPostBtn = (
     <button
-      onClick={props.handleModal}
+      onClick={handleNewPost}
       type="button"
       className="bg-neutral-700 shadow-2xl hover:bg-neutral-500 text-white font-semibold py-2 px-4 min-h-[50px] rounded flex items-center"
     >
@@ -43,7 +51,8 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
 
   const profileLink = (
     <Link
-      to={"/"} //`/profile/${user?.uid}`
+      onClick={() => handleMenuToggle()}
+      to={"profile"} //`/profile/${user?.uid}`
       className="bg-neutral-700 shadow-2xl w-full justify-around hover:bg-neutral-500 text-white font-semibold py-2 px-4 sm:px-2 mr-4 rounded flex items-center"
     >
       <MdOutlinePerson size={30} />
@@ -51,14 +60,21 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
     </Link>
   );
 
+  const appLogo = (
+    <div
+      onClick={handleLogoBtn}
+      className="flex cursor-pointer align-middle justify-center items-center min-h-[50px]"
+    >
+      <MdMessage size={40} />
+      <p className="xs:text-lg sm:text-lg md:text-2xl text-3xl font-bold">
+        osts App
+      </p>
+    </div>
+  );
+
   return (
     <header className="fixed py-2 pb-2 top-0 left-0 right-0 flex justify-between px-10 xs:px-4 items-center bg-neutral-800 border-b-neutral-300 border-b-2 z-10">
-      <div className="flex align-middle justify-center items-center min-h-[50px]">
-        <MdMessage size={40} />
-        <p className="xs:text-lg sm:text-lg md:text-2xl text-3xl font-bold">
-          osts App
-        </p>
-      </div>
+      {appLogo}
       <div className="flex gap-4 items-center relative">
         {user?.photoURL && newPostBtn}
         <>
