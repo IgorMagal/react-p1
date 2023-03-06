@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdCancel, MdSave } from "react-icons/md";
-import Ipost from "../interfaces/PostInterface";
+import Ipost from "../models/PostInterface";
 import { addPost } from "../services/DbServices";
 
 type PostFormProps = {

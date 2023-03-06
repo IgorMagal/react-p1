@@ -1,4 +1,4 @@
-import Ipost from "../interfaces/PostInterface";
+import Ipost from "../models/PostInterface";
 import { database } from "./Firebase";
 import { ref, push, query, get, set, remove } from "firebase/database";
 

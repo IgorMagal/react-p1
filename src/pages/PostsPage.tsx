@@ -1,6 +1,6 @@
-import { useEffect, useState, memo, useMemo } from "react";
+import { useEffect, useState, memo } from "react";
 import PostsList from "../components/PostsList";
-import Ipost from "../interfaces/PostInterface";
+import Ipost from "../models/PostInterface";
 import { getAllPosts } from "../services/DbServices";
 
 const PostsPage = () => {

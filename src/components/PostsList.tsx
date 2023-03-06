@@ -1,5 +1,5 @@
 import Post from "../components/Post";
-import IPost from "../interfaces/PostInterface";
+import IPost from "../models/PostInterface";
 
 const PostsList: React.FC<{ posts: IPost[] }> = (props) => {
   const { posts } = props;
