@@ -5,7 +5,7 @@ import {
   MdOutlinePerson,
 } from "react-icons/md";
 import { UserAuth } from "../services/AuthCtxProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
@@ -18,10 +18,6 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
 
   const handleNewPost = () => {
     nav("new");
-  };
-
-  const handleLogoBtn = () => {
-    nav("/");
   };
 
   const newPostBtn = (
@@ -61,15 +57,15 @@ const PostHeader: React.FC<{ handleModal: () => void }> = (props) => {
   );
 
   const appLogo = (
-    <div
-      onClick={handleLogoBtn}
+    <NavLink
+      to="/"
       className="flex cursor-pointer align-middle justify-center items-center min-h-[50px]"
     >
       <MdMessage size={40} />
       <p className="xs:text-lg sm:text-lg md:text-2xl text-3xl font-bold">
         osts App
       </p>
-    </div>
+    </NavLink>
   );
 
   return (
