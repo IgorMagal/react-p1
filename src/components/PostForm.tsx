@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdCancel, MdSave } from "react-icons/md";
 import Ipost from "../models/PostInterface";
-import { addPost } from "../services/DbServices";
+import { addPost } from "../services/PostService";
 
 type PostFormProps = {
   onSubmit: (post: Ipost) => void;

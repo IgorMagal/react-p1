@@ -1,7 +1,7 @@
 import { useEffect, useState, memo } from "react";
 import PostsList from "../components/PostsList";
 import Ipost from "../models/PostInterface";
-import { getAllPosts } from "../services/DbServices";
+import { getAllPosts } from "../services/PostService";
 
 const PostsPage = () => {
   const [postsData, setPostsData] = useState<Ipost[]>([]);
