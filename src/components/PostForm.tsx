@@ -12,8 +12,8 @@ type PostFormProps = {
 };
 
 const PostForm: React.FC<PostFormProps> = (props) => {
-  const { authorName, authorPhoto, headerText, onClose, onSubmit } = props;
-  // const [author, setAuthor] = useState(authorName);
+  const { authorName, authorPhoto, headerText, onClose } = props;
+
   const [comment, setComment] = useState("");
   const [isPosting, setIsPosting] = useState(false);
 

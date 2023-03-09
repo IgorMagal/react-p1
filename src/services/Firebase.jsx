@@ -2,15 +2,26 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
+const {
+  REACT_APP_APIKEY,
+  REACT_APP_DBURL,
+  REACT_APP_AUTHDOMAIN,
+  REACT_APP_PROJECTID,
+  REACT_APP_STORAGEBUCKET,
+  REACT_APP_SENDERID,
+  REACT_APP_APPID,
+  REACT_APP_MEASUREID,
+} = process.env;
+
 export const firebaseConfig = {
-  apiKey: "AIzaSyAYDvJn7QYIQFRY0Oq0uiXsY8me8evWhSs",
-  authDomain: "postsapp-6f655.firebaseapp.com",
-  projectId: "postsapp-6f655",
-  storageBucket: "postsapp-6f655.appspot.com",
-  messagingSenderId: "697571420491",
-  appId: "1:697571420491:web:05acfbe37e251ae3f0a0ce",
-  measurementId: "G-73L88F22T7",
-  databaseURL: "https://postsapp-6f655-default-rtdb.firebaseio.com/",
+  apiKey: REACT_APP_APIKEY,
+  authDomain: REACT_APP_AUTHDOMAIN,
+  projectId: REACT_APP_PROJECTID,
+  storageBucket: REACT_APP_STORAGEBUCKET,
+  messagingSenderId: REACT_APP_SENDERID,
+  appId: REACT_APP_APPID,
+  measurementId: REACT_APP_MEASUREID,
+  databaseURL: REACT_APP_DBURL,
 };
 
 // Initialize Firebase and services
