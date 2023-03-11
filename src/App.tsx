@@ -1,7 +1,7 @@
 import RootPage from "./pages/RootPage";
 import ErrorPage from "./pages/ErrorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import PostsPage from "./pages/PostsPage";
+import PostsPage, { loader as PostsLoader } from "./pages/PostsPage";
 
 import { AuthCtxProvider } from "./services/AuthCtxProvider";
 import NewPostPage from "./pages/NewPostPage";
@@ -18,6 +18,7 @@ function App() {
         {
           index: true,
           element: <PostsPage />,
+          loader: PostsLoader,
         },
         {
           path: ":postId",

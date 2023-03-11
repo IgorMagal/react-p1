@@ -1,5 +1,13 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc, setDoc } from "firebase/firestore";
 import { database } from "./Firebase";
+
+const setUserBio = async (uid: string, bioTxt: string | null) => {
+  await setDoc(doc(database, "users", uid), {
+    bio: bioTxt,
+  })
+    .then((r) => console.log(r))
+    .catch((e) => console.log(e));
+};
 
 const getUserBio = async (uid: string) => {
   const docRef = doc(database, "users", uid);
@@ -12,8 +20,8 @@ const getUserBio = async (uid: string) => {
   }
 };
 
-const addUserBio = async (uid: string, bio: string) => {
-  return "bye";
+const deleteUserBio = async (uid: string) => {
+  await deleteDoc(doc(database, "users", uid));
 };
 
-export { getUserBio, addUserBio };
+export { getUserBio, deleteUserBio, setUserBio };

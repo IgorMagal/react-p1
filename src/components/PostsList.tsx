@@ -3,8 +3,9 @@ import IPost from "../models/PostInterface";
 
 const PostsList: React.FC<{ posts: IPost[] }> = (props) => {
   const { posts } = props;
+
   return (
-    <div className="text-center">
+    <div className="text-center mt-24">
       <ul className="flex flex-wrap mx-2 my-2">
         {posts.reverse().map((post) => (
           <li

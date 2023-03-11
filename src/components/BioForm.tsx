@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { MdSave } from "react-icons/md";
-import { addUserBio } from "../services/UserService";
 
 type BioFormProps = {
   onSubmit: () => void;
@@ -9,7 +8,7 @@ type BioFormProps = {
 };
 
 const BioForm: React.FC<BioFormProps> = (props) => {
-  const { uid, headerText } = props;
+  const { headerText, onSubmit } = props;
 
   const [bio, setBio] = useState("");
   const [isPosting, setIsPosting] = useState(false);
@@ -19,7 +18,7 @@ const BioForm: React.FC<BioFormProps> = (props) => {
 
     setIsPosting(true);
     try {
-      await addUserBio(uid, bio);
+      await onSubmit();
     } catch (error) {
       console.error("Error posting:", error);
     } finally {
