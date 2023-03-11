@@ -7,12 +7,13 @@ type PostFormProps = {
   onSubmit: (post: Ipost) => void;
   onClose: () => void;
   headerText?: string;
+  authorId: string;
   authorName: string;
   authorPhoto?: string;
 };
 
 const PostForm: React.FC<PostFormProps> = (props) => {
-  const { authorName, authorPhoto, headerText, onClose } = props;
+  const { authorId, authorName, authorPhoto, headerText, onClose } = props;
 
   const [comment, setComment] = useState("");
   const [isPosting, setIsPosting] = useState(false);
@@ -23,9 +24,10 @@ const PostForm: React.FC<PostFormProps> = (props) => {
     setIsPosting(true);
     try {
       await addPost(
+        authorId,
         authorName,
-        comment,
         authorPhoto!,
+        comment,
         new Date().toISOString()
       );
     } catch (error) {

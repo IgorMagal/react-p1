@@ -14,6 +14,7 @@ const NewPostPage = () => {
   return (
     <>
       <PostForm
+        authorId={user!.uid}
         authorName={user!.displayName!}
         onClose={handleCancel}
         onSubmit={() => {}}

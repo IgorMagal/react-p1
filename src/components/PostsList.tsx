@@ -12,11 +12,12 @@ const PostsList: React.FC<{ posts: IPost[] }> = (props) => {
             className="w-full max-w-[50%] xs:max-w-[100%] xs:w-1/1 sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/4 grow"
           >
             <Post
-              author={post.author}
+              authorName={post.authorName}
+              authorId={post.authorId}
               comment={post.comment}
               date={post.date}
-              image={post.authorImage}
-              postId={post.id}
+              authorImage={post.authorImage}
+              id={post.id}
             />
           </li>
         ))}

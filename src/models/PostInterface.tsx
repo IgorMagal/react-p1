@@ -1,6 +1,7 @@
 interface Ipost {
   id: string;
-  author: string;
+  authorName: string;
+  authorId: string;
   comment: string;
   authorImage: string;
   date: string;

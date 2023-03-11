@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getFirestore } from "firebase/firestore";
 
 const {
   REACT_APP_APIKEY,
@@ -13,7 +13,7 @@ const {
   REACT_APP_MEASUREID,
 } = process.env;
 
-export const firebaseConfig = {
+const firebaseConfig = {
   apiKey: REACT_APP_APIKEY,
   authDomain: REACT_APP_AUTHDOMAIN,
   projectId: REACT_APP_PROJECTID,
@@ -29,6 +29,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvideer = new GoogleAuthProvider();
 // Initialize Realtime Database and get a reference to the service
-const database = getDatabase(app);
+const database = getFirestore(app);
 
 export { auth, googleProvideer, database };

@@ -1,21 +1,23 @@
 import Ipost from "../models/PostInterface";
 import { database } from "./Firebase";
-import { ref, push, query, get, set, remove } from "firebase/database";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 const addPost = async (
-  author: string,
-  comment: string,
+  authorId: string,
+  authorName: string,
   authorImage: string,
+  comment: string,
   date: string
 ) => {
   try {
-    const response = await push(ref(database, "/posts"), {
-      author: author,
-      comment: comment,
+    const response = await addDoc(collection(database, "posts"), {
+      authorId: authorId,
+      authorName: authorName,
       authorImage: authorImage,
+      comment: comment,
       date: date,
     });
-    console.log(response.key);
+    console.log(response.id);
     return response;
   } catch (error) {
     console.log(error);
@@ -23,48 +25,44 @@ const addPost = async (
 };
 
 const getAllPosts = async () => {
-  const postsQuery = query(ref(database, "/posts"));
-  const data = await get(postsQuery);
   const postsArray: Ipost[] = [];
-  if (data.exists()) {
-    const postsObject = data.val();
 
-    for (const postId in postsObject) {
-      const post = postsObject[postId];
-      postsArray.push({
-        id: postId,
-        author: post.author,
-        comment: post.comment,
-        authorImage: post.authorImage,
-        date: post.date,
-      });
-    }
-  }
+  const querySnapshot = await getDocs(collection(database, "posts"));
+  querySnapshot.forEach((doc) => {
+    postsArray.push({
+      id: doc.id,
+      authorId: doc.data().authotId,
+      authorName: doc.data().authorName,
+      authorImage: doc.data().authorImage,
+      comment: doc.data().comment,
+      date: doc.data().date,
+    });
+  });
   return postsArray;
 };
 
-const updatePost = async (postId: string, newData: Ipost) => {
-  try {
-    const postRef = ref(database, `/posts/${postId}`);
-    await set(postRef, newData);
-    console.log(`Post ${postId} has been updated successfully`);
-  } catch (error) {
-    console.log(error);
-  }
-};
+// const updatePost = async (postId: string, newData: Ipost) => {
+//   try {
+//     const postRef = ref(database, `/posts/${postId}`);
+//     await set(postRef, newData);
+//     console.log(`Post ${postId} has been updated successfully`);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-const deletePost = async (postId: string) => {
-  try {
-    // Create a reference to the post with the specified ID
-    const postRef = ref(database, `/posts/${postId}`);
+// const deletePost = async (postId: string) => {
+//   try {
+//     // Create a reference to the post with the specified ID
+//     const postRef = ref(database, `/posts/${postId}`);
 
-    // Delete the post from the database
-    await remove(postRef);
+//     // Delete the post from the database
+//     await remove(postRef);
 
-    console.log(`Post ${postId} deleted successfully`);
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     console.log(`Post ${postId} deleted successfully`);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-export { addPost, getAllPosts, updatePost, deletePost };
+export { addPost, getAllPosts };
