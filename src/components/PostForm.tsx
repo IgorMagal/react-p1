@@ -40,7 +40,7 @@ const PostForm: React.FC<PostFormProps> = (props) => {
   };
 
   return (
-    <div className="flex justify-center items-center py-28">
+    <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center">
       <form
         className="bg-neutral-100 rounded-lg p-4 w-full max-w-[800px] mx-5  animate-[wiggle_0.05s_ease-in-out_2]"
         onSubmit={handlePost}

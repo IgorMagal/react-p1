@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { UserAuth } from "../services/AuthCtxProvider";
-import { getUserBio, deleteUserBio } from "../services/UserService";
+import { getUserBio, deleteUserBio, setUserBio } from "../services/UserService";
 import BioForm from "../components/BioForm";
 import { MdDelete, MdEdit } from "react-icons/md";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -25,14 +25,11 @@ const ProfilePage = () => {
   };
 
   return (
-    //m-2 p-1 mx-5 border-2 rounded-lg border-neutral-900 bg-neutral-100 shadow-xl hover:scale-105 shadow-neutral-900 hover:border-white text-neutral-800
-
-    <div className="flex flex-col gap-4 text-neutral-800 py-20 text-center items-center w-full min-h-screen p-4 bg-neutral-100">
+    <div className="fixed top-0 left-0 w-screen h-screen gap-2 flex flex-col justify-center items-center bg-neutral-100 text-neutral-800">
       {isLoading ? (
         <LoadingSpinner />
       ) : (
         <>
-          {" "}
           <p className="text-2xl">{`ProfilePage for ${user?.displayName}`}</p>
           <p className="text-md">{user?.email}</p>
           <img
@@ -42,12 +39,11 @@ const ProfilePage = () => {
           />
           {bio === null ? (
             <BioForm
-              onSubmit={() => {}}
               uid={user!.uid}
-              headerText="Tell us a little bit about yourself."
+              headerText="Write a little bit about yourself:"
             />
           ) : (
-            <div className="flex flex-col my-5 p-1 max-w-2xl w-full border-2 rounded-lg border-neutral-300 bg-neutral-200  text-neutral-800">
+            <div className="flex flex-col my-5 p-1 w-full max-w-[90%] border-2 rounded-lg border-neutral-300 bg-neutral-200  text-neutral-800">
               <h2 className="text-2xl text-left px-4 py-1">About me:</h2>
               <p className="text-justify py-2 px-5">{bio}</p>
               <div className="flex justify-end gap-4 px-4 py-1">

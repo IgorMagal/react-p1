@@ -9,7 +9,7 @@ interface LoaderData {
   posts: Ipost[];
 }
 
-const PostsPage2: React.FC = () => {
+const PostsPage: React.FC = () => {
   const { posts } = useLoaderData() as LoaderData;
 
   return (
@@ -19,11 +19,9 @@ const PostsPage2: React.FC = () => {
       </Await>
     </Suspense>
   );
-
-  //   return <PostsList posts={posts} />;
 };
 
-export default PostsPage2;
+export default PostsPage;
 
 export const loader = async () => {
   try {
