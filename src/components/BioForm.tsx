@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import { MdSave } from "react-icons/md";
-import { setUserBio } from "../services/UserService";
 
 type BioFormProps = {
   headerText?: string;
-  uid: string;
+
+  isLoading: boolean;
+  updateBio: (bio: string) => void;
 };
 
 const BioForm: React.FC<BioFormProps> = (props) => {
-  const { headerText, uid } = props;
+  const { headerText, isLoading, updateBio } = props;
 
   const [bio, setBio] = useState("");
-  const [isPosting, setIsPosting] = useState(false);
 
   const handlePost = async (event: React.FormEvent<HTMLFormElement>) => {
-    //event.preventDefault();
-
-    setIsPosting(true);
-    setUserBio(uid, bio);
-    setIsPosting(false);
+    event.preventDefault();
+    updateBio(bio);
   };
 
   return (
@@ -29,21 +26,22 @@ const BioForm: React.FC<BioFormProps> = (props) => {
         </div>
         <div className="w-full">
           <textarea
+            disabled={isLoading}
             id="comment"
-            className="border rounded py-2 w-full text-black min-h-[200px] min-w-full"
+            className="border-2 border-neutral-300 rounded py-2 w-full text-black min-h-[200px] min-w-full"
             value={bio}
             onChange={(event) => setBio(event.target.value)}
           />
         </div>
         <div className="flex flex-row justify-center w-full">
           <button
-            disabled={isPosting}
+            disabled={isLoading}
             type="submit"
             className="bg-neutral-700 hover:bg-neutral-800 text-white font-bold py-2 px-4 rounded-lg"
           >
             <div className="flex items-center gap-1">
               <MdSave size={30} />
-              {isPosting ? "Posting.." : "Save"}
+              {isLoading ? "Saving.." : "Save"}
             </div>
           </button>
         </div>

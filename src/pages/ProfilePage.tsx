@@ -11,18 +11,20 @@ const ProfilePage = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
-    if (user!.uid !== null) {
+    if (user?.uid) {
+      setLoading(true);
       getUserBio(user!.uid).then((data) => setBio(data));
+      setLoading(false);
     }
-    setLoading(false);
   }, [user]);
 
   const deleteBioHandler = () => {
     setLoading(true);
-    deleteUserBio(user!.uid).then(() => setBio(null));
+    deleteUserBio(user!.uid).finally(() => setBio(null));
     setLoading(false);
   };
+
+  const updateBioHandler = () => {};
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen gap-2 flex flex-col justify-center items-center bg-neutral-100 text-neutral-800">
@@ -35,11 +37,12 @@ const ProfilePage = () => {
           <img
             className="w-40 h-40 rounded-full border-2 border-neutral-50 shadow-lg shadow-neutral-500"
             src={user?.photoURL ? user.photoURL : undefined}
-            alt={user?.displayName!}
+            alt={user?.displayName ? user?.displayName! : undefined}
           />
-          {bio === null ? (
+          {bio === null && user?.uid ? (
             <BioForm
-              uid={user!.uid}
+              isLoading={isLoading}
+              updateBio={() => {}}
               headerText="Write a little bit about yourself:"
             />
           ) : (

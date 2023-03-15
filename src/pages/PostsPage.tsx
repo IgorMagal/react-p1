@@ -2,22 +2,20 @@ import { Await, defer, useLoaderData } from "react-router-dom";
 import { getAllPosts } from "../services/PostService";
 import Ipost from "../models/PostInterface";
 import PostsList from "../components/PostsList";
-import { Suspense } from "react";
-import LoadingSpinner from "../components/LoadingSpinner";
 
-interface LoaderData {
-  posts: Ipost[];
-}
+import LoadingSpinner from "../components/LoadingSpinner";
+import React from "react";
 
 const PostsPage: React.FC = () => {
-  const { posts } = useLoaderData() as LoaderData;
+  const { posts } = useLoaderData() as { posts: Ipost[] };
 
   return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <Await resolve={posts}>
-        <PostsList posts={posts} />
-      </Await>
-    </Suspense>
+    <React.Suspense fallback={<LoadingSpinner />}>
+      <Await
+        resolve={posts}
+        children={(resolvedPosts) => <PostsList posts={resolvedPosts} />}
+      />
+    </React.Suspense>
   );
 };
 

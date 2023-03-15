@@ -8,6 +8,8 @@ import NewPostPage from "./pages/NewPostPage";
 import EditPostPage from "./pages/EditPostPage";
 import PostDetails from "./pages/PostDetails";
 import ProfilePage from "./pages/ProfilePage";
+import LoadingSpinner from "./components/LoadingSpinner";
+import HomePage from "./pages/HomePage";
 function App() {
   const router = createBrowserRouter([
     {
@@ -17,17 +19,31 @@ function App() {
       children: [
         {
           index: true,
-          element: <PostsPage />,
-          loader: PostsLoader,
+          element: <HomePage />,
         },
         {
-          path: ":postId",
+          path: "loading",
+          element: <LoadingSpinner />,
+        },
+        {
+          path: "posts",
           children: [
-            { index: true, element: <PostDetails /> },
-            { path: "edit", element: <EditPostPage /> },
+            {
+              index: true,
+              element: <PostsPage />,
+              loader: PostsLoader,
+            },
+            { path: "new", element: <NewPostPage /> },
+            {
+              path: ":postId",
+              children: [
+                { index: true, element: <PostDetails /> },
+                { path: "edit", element: <EditPostPage /> },
+              ],
+            },
           ],
         },
-        { path: "new", element: <NewPostPage /> },
+
         { path: "profile", element: <ProfilePage /> },
       ],
     },
