@@ -101,19 +101,29 @@ const PostHeader: React.FC<{ handleModal: () => void }> = () => {
             />
           </li>
         )}
-        {showMenu && (
-          <li>
-            <div className="absolute right-0 top-10 z-50 bg-neutral-100 shadow-lg px-2 py-2 rounded-md min-w-[150px]">
-              <div className="flex flex-col items-center gap-2 w-full m-2 justify-around">
-                {profileLink}
-                {logoutBtn}
-              </div>
-            </div>
-          </li>
-        )}
+        {showMenu && UserMenu()}
       </ul>
     </header>
   );
+
+  function UserMenu() {
+    return (
+      <div
+        onClick={() => setShowMenu(false)}
+        className="fixed inset-0 z-40 bg-neutral-200 bg-opacity-0"
+      >
+        <div
+          onMouseLeave={() => setShowMenu(false)}
+          className="border-neutral-900 border-2 absolute right-0 top-[70px] z-50 bg-neutral-100 shadow-lg px-1 py-1 rounded-md min-w-[150px]"
+        >
+          <div className="flex flex-col items-center gap-2 w-full m-2 justify-around">
+            {profileLink}
+            {logoutBtn}
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default PostHeader;
